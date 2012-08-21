@@ -1,7 +1,7 @@
 #sbs-git:slp/pkgs/t/tel-plugin-database
 Name:       tel-plugin-database
 Summary:    Telephony DataBase storage plugin
-Version: 0.1.3
+Version: 0.1.5
 Release:    1
 Group:      System/Libraries
 License:    Apache
@@ -24,7 +24,7 @@ Telephony DataBase storage plugin
 cmake . -DCMAKE_INSTALL_PREFIX=%{_prefix}
 make %{?jobs:-j%jobs}
 
-%post 
+%post
 /sbin/ldconfig
 
 %postun -p /sbin/ldconfig

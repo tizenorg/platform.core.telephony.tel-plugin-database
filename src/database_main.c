@@ -70,7 +70,7 @@ static gboolean update_query_database(Storage *strg, void *handle, const char *q
 	dbg("update query");
 
 	memset(szQuery, '\0', 1000);
-	strcpy(szQuery, query);
+	strncpy(szQuery, query, 1000);
 
 	rv = sqlite3_prepare_v2(handle, szQuery, strlen(szQuery), &stmt, NULL);
 	if (rv != SQLITE_OK) {
@@ -122,7 +122,7 @@ static gboolean read_query_database(Storage *strg, void *handle, const char *que
 	dbg("read query");
 
 	memset(szQuery, '\0', 5000);
-	strcpy(szQuery, query);
+	strncpy(szQuery, query, 5000);
 
 	rv = sqlite3_prepare_v2(handle, szQuery, strlen(szQuery), &stmt, NULL);
 	if (rv != SQLITE_OK) {
@@ -190,7 +190,7 @@ static gboolean insert_query_database(Storage *strg, void *handle, const char *q
 	dbg("insert query");
 
 	memset(szQuery, '\0', 5000);
-	strcpy(szQuery, query);
+	strncpy(szQuery, query, 5000);
 
 	rv = sqlite3_prepare_v2(handle, szQuery, strlen(szQuery), &stmt, NULL);
 	if (rv != SQLITE_OK) {
@@ -239,7 +239,7 @@ static gboolean remove_query_database(Storage *strg, void *handle, const char *q
 	dbg("remove query");
 
 	memset(szQuery, '\0', 1000);
-	strcpy(szQuery, query);
+	strncpy(szQuery, query, 1000);
 
 	rv = sqlite3_prepare_v2(handle, szQuery, strlen(szQuery), &stmt, NULL);
 	if (rv != SQLITE_OK) {
