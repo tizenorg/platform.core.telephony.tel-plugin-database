@@ -42,5 +42,5 @@ SET_TARGET_PROPERTIES(db-plugin PROPERTIES PREFIX "" OUTPUT_NAME db-plugin)
 
 # install
 INSTALL(TARGETS db-plugin
-		LIBRARY DESTINATION lib/telephony/plugins)
+	LIBRARY DESTINATION ${LIB_INSTALL_DIR}/telephony/plugins)
 INSTALL(FILES ${CMAKE_SOURCE_DIR}/LICENSE DESTINATION /usr/share/license RENAME tel-plugin-database)

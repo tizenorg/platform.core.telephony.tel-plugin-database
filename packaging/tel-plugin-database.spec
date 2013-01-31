@@ -1,7 +1,6 @@
-#sbs-git:slp/pkgs/t/tel-plugin-database
 Name:       tel-plugin-database
 Summary:    Telephony DataBase storage plugin
-Version: 0.1.7
+Version:    0.1.7
 Release:    1
 Group:      System/Libraries
 License:    Apache
@@ -21,7 +20,7 @@ Telephony DataBase storage plugin
 %setup -q
 
 %build
-cmake . -DCMAKE_INSTALL_PREFIX=%{_prefix}
+%cmake .
 make %{?jobs:-j%jobs}
 
 %post
@@ -30,12 +29,9 @@ make %{?jobs:-j%jobs}
 %postun -p /sbin/ldconfig
 
 %install
-rm -rf %{buildroot}
 %make_install
-mkdir -p %{buildroot}/usr/share/license
 
 %files
 %defattr(-,root,root,-)
-#%doc COPYING
 %{_libdir}/telephony/plugins/db-plugin*
 /usr/share/license/tel-plugin-database
