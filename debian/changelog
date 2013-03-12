@@ -1,0 +1,39 @@
+tel-plugin-database (0.1.4) unstable; urgency=low
+
+  * package version sync with public
+  * Git: slp/pkgs/t/tel-plugin-database
+  * Tag: tel-plugin-database_0.1.4
+
+ -- Inho Oh <inho48.oh@samsung.com>  Mon, 02 Apr 2012 14:54:27 +0900
+
+tel-plugin-database (0.1.3) unstable; urgency=low
+
+  * fix crash
+  * Git: slp/pkgs/t/tel-plugin-database
+  * Tag: tel-plugin-database_0.1.3
+
+ -- DongHoo Park <donghoo.park@samsung.com>  Thu, 29 Mar 2012 13:49:39 +0900
+
+tel-plugin-database (0.1.2) unstable; urgency=low
+
+  * Fix prefix (TAPI_ to TCORE_)
+  * Git: slp/pkgs/t/tel-plugin-database
+  * Tag: tel-plugin-database_0.1.2
+
+ -- Inho Oh <inho48.oh@samsung.com>  Tue, 27 Mar 2012 22:12:52 +0900
+
+tel-plugin-database (0.1.1) unstable; urgency=low
+
+  * Add .spec file for OBS
+  * Git: slp/pkgs/t/tel-plugin-database
+  * Tag: tel-plugin-database_0.1.1
+
+ -- DongHoo Park <donghoo.park@samsung.com>  Fri, 16 Mar 2012 21:14:25 +0900
+
+tel-plugin-database (0.1.0) unstable; urgency=low
+
+  * initialize
+  * Git: slp/pkgs/t/tel-plugin-database
+  * Tag: tel-plugin-database_0.1.0
+
+ -- Inho Oh <inho48.oh@samsung.com>  Thu, 15 Mar 2012 23:40:55 +0900
