@@ -5,6 +5,7 @@ Release:    1
 Group:      System/Libraries
 License:    Apache
 Source0:    tel-plugin-database-%{version}.tar.gz
+Source1001: 	tel-plugin-database.manifest
 Requires(post): /sbin/ldconfig
 Requires(postun): /sbin/ldconfig
 BuildRequires:  cmake
@@ -18,6 +19,7 @@ Telephony DataBase storage plugin
 
 %prep
 %setup -q
+cp %{SOURCE1001} .
 
 %build
 %cmake .
@@ -32,6 +34,7 @@ make %{?jobs:-j%jobs}
 %make_install
 
 %files
+%manifest %{name}.manifest
 %defattr(-,root,root,-)
 %{_libdir}/telephony/plugins/db-plugin*
 /usr/share/license/tel-plugin-database
