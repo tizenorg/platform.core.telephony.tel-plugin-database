@@ -28,9 +28,7 @@ ADD_DEFINITIONS("-DTCORE_LOG_TAG=\"TEL_PLUGIN_DATABASE\"")
 MESSAGE(${CMAKE_C_FLAGS})
 MESSAGE(${CMAKE_EXE_LINKER_FLAGS})
 
-SET(SRCS
-		src/database_main.c
-)
+SET(SRCS src/database_main.c)
 
 
 # library build

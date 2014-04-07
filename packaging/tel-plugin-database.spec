@@ -1,6 +1,10 @@
-Name:       tel-plugin-database
-Summary:    Telephony DataBase storage plugin
-Version:    0.1.7
+%define major 3
+%define minor 0
+%define patchlevel 1
+
+Name: tel-plugin-database
+Summary: Telephony DataBase storage plugin
+Version:    %{major}.%{minor}.%{patchlevel}
 Release:    1
 Group:      System/Libraries
 License:    Apache-2.0
