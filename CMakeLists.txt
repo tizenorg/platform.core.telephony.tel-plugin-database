@@ -4,7 +4,7 @@ PROJECT(db-plugin C)
 ### Global setting ###
 SET(PREFIX ${CMAKE_INSTALL_PREFIX})
 SET(EXEC_PREFIX "\${prefix}")
-SET(LIBDIR "\${prefix}/lib")
+SET(LIBDIR ${LIB_INSTALL_DIR})
 SET(INCLUDEDIR "\${prefix}/include")
 SET(PKGCONFIGDIR "${PREFIX}/lib/pkgconfig" CACHE PATH PKGCONFIGDIR)
 SET(CMAKE_INSTALL_PREFIX "${PREFIX}")
@@ -50,5 +50,5 @@ SET_TARGET_PROPERTIES(db-plugin PROPERTIES PREFIX "" OUTPUT_NAME db-plugin)
 
 # install
 INSTALL(TARGETS db-plugin
-		LIBRARY DESTINATION lib/telephony/plugins)
+		LIBRARY DESTINATION ${LIBDIR}/telephony/plugins)
 INSTALL(FILES ${CMAKE_SOURCE_DIR}/LICENSE DESTINATION /usr/share/license RENAME tel-plugin-database)
