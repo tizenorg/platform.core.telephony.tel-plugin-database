@@ -1,6 +1,6 @@
 %define major 0
 %define minor 1
-%define patchlevel 19
+%define patchlevel 20
 
 Name:           tel-plugin-database
 Version:        %{major}.%{minor}.%{patchlevel}
@@ -46,7 +46,6 @@ chmod 600 /opt/dbspace/.mcc_mnc_oper_list.db
 chown system:system /opt/dbspace/.mcc_mnc_oper_list.db
 chmod 644 /opt/dbspace/.mcc_mnc_oper_list.db-journal
 chown system:system /opt/dbspace/.mcc_mnc_oper_list.db-journal
-chsmack -a 'telephony_framework::db' /opt/dbspace/.mcc_mnc_oper_list.db*
 
 %if 0%{?sec_product_feature_telephony_cdma}
 	rm -f /opt/dbspace/.mcc_sid_list.db
@@ -56,7 +55,6 @@ chsmack -a 'telephony_framework::db' /opt/dbspace/.mcc_mnc_oper_list.db*
 	chown system:system /opt/dbspace/.mcc_mnc_oper_list.db
 	chmod 644 /opt/dbspace/.mcc_sid_list.db-journal
 	chown system:system /opt/dbspace/.mcc_mnc_oper_list.db-journal
-	chsmack -a 'telephony_framework::db' /opt/dbspace/.mcc_sid_list.db*
 %endif
 
 %postun -p /sbin/ldconfig
