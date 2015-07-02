@@ -51,4 +51,8 @@ SET_TARGET_PROPERTIES(db-plugin PROPERTIES PREFIX "" OUTPUT_NAME db-plugin)
 # install
 INSTALL(TARGETS db-plugin
 		LIBRARY DESTINATION ${LIBDIR}/telephony/plugins)
+INSTALL(FILES ${CMAKE_SOURCE_DIR}/res/common_mcc_mnc_oper_list.sql DESTINATION /tmp RENAME mcc_mnc_oper_list.sql)
+IF (OPERATOR_CDMA)
+INSTALL(FILES ${CMAKE_SOURCE_DIR}/res/cdma_mcc_sid_list.sql DESTINATION /tmp RENAME mcc_sid_list.sql)
+ENDIF (OPERATOR_CDMA)
 INSTALL(FILES ${CMAKE_SOURCE_DIR}/LICENSE DESTINATION /usr/share/license RENAME tel-plugin-database)
