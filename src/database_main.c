@@ -112,8 +112,8 @@ static gboolean update_query_database(Storage *strg, void *handle, const char *q
 	return TRUE;
 }
 
-static gboolean read_query_database(Storage *strg, void *handle, const char *query, GHashTable *in_param,
-	GHashTable *out_param, int out_param_cnt)
+static gboolean _read_query_database_internal(Storage *strg, void *handle, const char *query, GHashTable *in_param,
+		gpointer out_param, int out_param_cnt, gboolean in_order)
 {
 	int rv = 0, local_index = 0, outter_index = 0;
 	sqlite3_stmt *stmt = NULL;
@@ -155,11 +155,9 @@ static gboolean read_query_database(Storage *strg, void *handle, const char *que
 	}
 
 	rv = sqlite3_step(stmt);
-	dbg("read query executed (%d)", rv);
+	dbg("read query executed (%d), in_order (%d)", rv, in_order);
 
 	while (rv == SQLITE_ROW) {
-
-		char tmp_key_outter[10];
 		GHashTable *out_param_data;
 
 		out_param_data = g_hash_table_new_full(g_str_hash, g_str_equal, NULL, g_free);
@@ -172,13 +170,33 @@ static gboolean read_query_database(Storage *strg, void *handle, const char *que
 			g_hash_table_insert(out_param_data, g_strdup(tmp_key), g_strdup((const char *)tmp));
 		}
 
-		snprintf(tmp_key_outter, sizeof(tmp_key_outter), "%d", outter_index);
-		g_hash_table_insert(out_param, g_strdup(tmp_key_outter), out_param_data);
+		if (in_order) {
+			GSList **temp = out_param;
+			*temp = g_slist_append(*temp, out_param_data);
+		} else {
+			char tmp_key_outter[10];
+			snprintf(tmp_key_outter, sizeof(tmp_key_outter), "%d", outter_index);
+			g_hash_table_insert((GHashTable*)out_param, g_strdup(tmp_key_outter), out_param_data);
+		}
 		outter_index++;
 		rv = sqlite3_step(stmt);
 	}
 
 	sqlite3_finalize(stmt);
+	return TRUE;
+}
+
+static gboolean read_query_database(Storage *strg, void *handle, const char *query, GHashTable *in_param,
+		GHashTable *out_param, int out_param_cnt)
+{
+	_read_query_database_internal(strg, handle, query, in_param, out_param, out_param_cnt, FALSE);
+	return TRUE;
+}
+
+static gboolean read_query_database_in_order(Storage *strg, void *handle, const char *query, GHashTable *in_param,
+		GSList **out_param, int out_param_cnt)
+{
+	_read_query_database_internal(strg, handle, query, in_param, out_param, out_param_cnt, TRUE);
 	return TRUE;
 }
 
@@ -287,6 +305,7 @@ static struct storage_operations ops = {
 	.remove_handle = remove_handle,
 	.update_query_database = update_query_database,
 	.read_query_database = read_query_database,
+	.read_query_database_in_order = read_query_database_in_order,
 	.insert_query_database = insert_query_database,
 	.remove_query_database = remove_query_database,
 };
