@@ -1,6 +1,6 @@
 %define major 0
 %define minor 1
-%define patchlevel 22
+%define patchlevel 23
 
 Name:           tel-plugin-database
 Version:        %{major}.%{minor}.%{patchlevel}
@@ -13,6 +13,7 @@ BuildRequires:  cmake
 BuildRequires:  pkgconfig(db-util)
 BuildRequires:  pkgconfig(glib-2.0)
 BuildRequires:  pkgconfig(tcore)
+BuildRequires:  pkgconfig(libtzplatform-config)
 Requires(post): /sbin/ldconfig
 Requires(postun): /sbin/ldconfig
 
