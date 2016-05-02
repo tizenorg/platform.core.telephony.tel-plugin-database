@@ -1,6 +1,6 @@
 %define major 0
 %define minor 1
-%define patchlevel 24
+%define patchlevel 25
 
 Name:           tel-plugin-database
 Version:        %{major}.%{minor}.%{patchlevel}
@@ -65,7 +65,7 @@ chown telephony:telephony %TZ_SYS_DB/.mcc_mnc_oper_list.db-journal
 mkdir -p %{buildroot}%{_datadir}/license
 
 %files
-%defattr(644,system,system,-)
+%defattr(644,root,root,-)
 /tmp/mcc_mnc_oper_list.sql
 %if 0%{?sec_product_feature_telephony_cdma}
 	/tmp/mcc_sid_list.sql
