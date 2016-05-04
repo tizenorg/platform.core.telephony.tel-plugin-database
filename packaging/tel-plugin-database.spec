@@ -1,6 +1,6 @@
 %define major 0
 %define minor 1
-%define patchlevel 25
+%define patchlevel 26
 
 Name:           tel-plugin-database
 Version:        %{major}.%{minor}.%{patchlevel}
@@ -45,8 +45,10 @@ rm -f /tmp/mcc_mnc_oper_list.sql
 
 chmod 600 %TZ_SYS_DB/.mcc_mnc_oper_list.db
 chown telephony:telephony %TZ_SYS_DB/.mcc_mnc_oper_list.db
+chsmack -a System %TZ_SYS_DB/.mcc_mnc_oper_list.db
 chmod 644 %TZ_SYS_DB/.mcc_mnc_oper_list.db-journal
 chown telephony:telephony %TZ_SYS_DB/.mcc_mnc_oper_list.db-journal
+chsmack -a System %TZ_SYS_DB/.mcc_mnc_oper_list.db-journal
 
 %if 0%{?sec_product_feature_telephony_cdma}
 	rm -f %TZ_SYS_DB/.mcc_sid_list.db
@@ -54,8 +56,10 @@ chown telephony:telephony %TZ_SYS_DB/.mcc_mnc_oper_list.db-journal
 	rm -f /tmp/mcc_sid_list.sql
 	chmod 600 %TZ_SYS_DB/.mcc_sid_list.db
 	chown telephony:telephony %TZ_SYS_DB/.mcc_mnc_oper_list.db
+	chsmack -a System %TZ_SYS_DB/.mcc_mnc_oper_list.db
 	chmod 644 %TZ_SYS_DB/.mcc_sid_list.db-journal
 	chown telephony:telephony %TZ_SYS_DB/.mcc_mnc_oper_list.db-journal
+	chsmack -a System %TZ_SYS_DB/.mcc_mnc_oper_list.db-journal
 %endif
 
 %postun -p /sbin/ldconfig
