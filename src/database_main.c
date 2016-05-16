@@ -160,7 +160,7 @@ static gboolean _read_query_database_internal(Storage *strg, void *handle, const
 	while (rv == SQLITE_ROW) {
 		GHashTable *out_param_data;
 
-		out_param_data = g_hash_table_new_full(g_str_hash, g_str_equal, NULL, g_free);
+		out_param_data = g_hash_table_new_full(g_str_hash, g_str_equal, g_free, g_free);
 
 		for (local_index = 0; local_index < out_param_cnt; local_index++) {
 			char tmp_key[10];

@@ -1,6 +1,6 @@
 %define major 0
 %define minor 1
-%define patchlevel 26
+%define patchlevel 27
 
 Name:           tel-plugin-database
 Version:        %{major}.%{minor}.%{patchlevel}
